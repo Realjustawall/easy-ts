@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Easy-ts</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="workspace.css"></head>
+<body class="popup-page">
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="brand-wrap">
+        <div class="brand-mark" aria-hidden="true"><span>E</span></div>
+        <div class="brand-copy">
+          <strong>Easy-ts</strong>
+          <span>استودیوی ترجمه و دوبلهٔ فارسی</span>
+        </div>
+      </div>
+      <div id="pageConnection" class="connection-chip checking">
+        <i></i><span id="pageConnectionText">در حال اتصال</span>
+      </div>
+    </header>
+
+    <a class="dashboard-launch" href="dashboard.html" target="_blank"><strong>بازکردن داشبورد</strong><span>فضای کامل ترجمه و دوبله ↗</span></a><nav class="nav-tabs" role="tablist" aria-label="Easy-ts">
+      <button class="nav-tab active" data-tab="dub" type="button">دوبله</button>
+      <button class="nav-tab" data-tab="settings" type="button">تنظیمات</button>
+    </nav>
+
+    <button id="openStudioBtn" class="btn btn-export" type="button">بازکردن استودیو · فایل کامل و ویرایش جمله‌ها ↗</button>
+    <a class="btn btn-export" href="settings.html" target="_blank">تنظیمات کامل · انتخاب سرویس‌ها ↗</a>
+    <section id="tab-dub" class="panel active">
+      <article class="video-card card">
+        <div class="card-kicker-row">
+          <span class="kicker">ویدیوی فعلی</span>
+          <button id="reconnectBtn" class="icon-btn" type="button" title="اتصال مجدد به صفحه" aria-label="اتصال مجدد">↻</button>
+        </div>
+        <h1 id="videoTitle" class="video-title">در حال بررسی صفحه…</h1>
+        <div class="video-foot">
+          <span id="videoMeta" class="video-meta">YouTube</span>
+          <span id="sourceChip" class="source-chip">آماده</span>
+        </div>
+      </article>
+
+      <article class="status-card card">
+        <div class="status-head">
+          <div>
+            <span class="kicker">وضعیت پردازش</span>
+            <div id="statusText" class="status-text" role="status" aria-live="polite">آماده برای شروع</div>
+            <div id="statusDetail" class="status-detail" hidden></div>
+          </div>
+          <div id="statusBadge" class="status-badge idle">IDLE</div>
+        </div>
+
+        <div class="progress-heading"><span>پیشرفت کل</span><span id="remainingText">منتظر شروع</span></div>
+        <div class="progress-wrap" aria-label="پیشرفت">
+          <div class="progress-track" id="overallProgress" role="progressbar" aria-label="پیشرفت کل" aria-valuemin="0" aria-valuemax="100"><div id="progressBar" class="progress-bar"></div></div>
+          <span id="progressPercent" class="progress-percent">0%</span>
+        </div>
+
+        <div class="stage-progress">
+          <div class="stage-row"><span>ترجمهٔ فارسی</span><strong id="translationPercent">—</strong></div>
+          <progress id="translationProgress" max="100" value="0" aria-label="پیشرفت ترجمه"></progress>
+          <div class="stage-row"><span>ساخت صدای دوبله</span><strong id="audioPercent">—</strong></div>
+          <progress id="audioProgress" max="100" value="0" aria-label="پیشرفت ساخت صدا"></progress>
+          <div class="stage-foot"><span id="etaText">زمان باقی‌مانده پس از ساخت اولین تکه تخمین زده می‌شود.</span><span id="failedText"></span></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><strong id="readyCount">0</strong><span>آماده</span></div>
+          <div class="metric"><strong id="totalCount">0</strong><span>کل تکه‌ها</span></div>
+          <div class="metric"><strong id="cacheMetric">—</strong><span>کش محلی</span></div>
+        </div>
+      </article>
+
+      <div class="speaker-summary"><span id="speakerSummary">حالت زیرنویس · صدای پیش‌فرض</span><span id="playbackState">دوبله غیرفعال</span></div>
+      <div class="actions">
+        <button id="startBtn" class="btn btn-primary btn-lg" type="button">
+          <span class="btn-icon">▶</span><span id="startBtnLabel">شروع پردازش</span>
+        </button>
+        <button id="applyBtn" class="btn btn-secondary btn-lg" type="button" disabled>
+          <span class="btn-icon">✓</span><span>اعمال دوبله</span>
+        </button>
+        <button id="stopBtn" class="btn btn-quiet" type="button">توقف و بازگرداندن صدای اصلی</button>
+      </div>
+
+      <button id="exportSrtBtn" class="btn btn-export" type="button" disabled>دریافت زیرنویس فارسی · SRT ↓</button>
+      <div class="sync-note">
+        <div class="sync-icon">⌁</div>
+        <div><strong>هماهنگ با ویدیو</strong><span>دوبله با توقف، تغییر سرعت و جابه‌جایی ویدیو هماهنگ می‌شود. در ضبط صوتی، برای شنیدن بخش‌های آماده باید به عقب برگردید.</span></div>
+      </div>
+    </section>
+
+    <section id="tab-settings" class="panel">
+      <div class="settings-toolbar">
+        <div>
+          <strong>تنظیمات</strong>
+          <span>تغییرات به‌صورت خودکار ذخیره می‌شوند.</span>
+        </div>
+        <div id="saveState" class="save-state saved"><i></i><span>ذخیره شده</span></div>
+      </div>
+
+      <div class="settings-scroll">
+        <section class="settings-card card">
+          <div class="section-heading"><div><span class="section-icon">Aa</span><div><strong>واژه‌نامه و زمینهٔ ترجمه</strong><span>نام‌ها، اصطلاحات و تلفظ یکسان</span></div></div></div>
+          <label class="field"><span class="field-label">واژه‌نامهٔ ترجمه</span><textarea id="translationGlossary" maxlength="6000" rows="3" placeholder="هر خط: اصطلاح منبع = معادل فارسی"></textarea></label>
+          <label class="field"><span class="field-label">توضیح پروژه</span><textarea id="projectNotes" maxlength="4000" rows="2" placeholder="موضوع، مخاطب و لحن مناسب"></textarea></label>
+          <label class="field"><span class="field-label">اصلاح تلفظ</span><textarea id="pronunciationRules" maxlength="6000" rows="3" placeholder="OpenAI = اوپن ای آی"></textarea><small class="field-help">جایگزینی لفظی فقط روی متن ارسالی به ساخت صدا اعمال می‌شود؛ متن زیرنویس تغییر نمی‌کند.</small></label>
+        </section>
+        <section class="settings-card card">
+          <div class="section-heading"><div><span class="section-icon">S</span><div><strong>گفت‌وگوی چندگوینده</strong><span>تشخیص صوتی و پخش هم‌زمان گوینده‌ها</span></div></div></div>
+          <label class="toggle-field"><span>تشخیص گوینده از صدا</span><input id="speakerMode" type="checkbox"></label>
+          <p class="field-help">با فعال‌کردن این گزینه، صدا هنگام پخش ویدیو ضبط می‌شود. سرویس تشخیص، ترجمه و تولید صدا را در «تنظیمات کامل» انتخاب کنید. دریافت کامل گفتار هم‌زمان تضمینی نیست.</p>
+          <label class="field"><span class="field-label">Deepgram API Key</span><div class="secret-input"><input id="deepgramApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Deepgram API key"><button class="reveal-btn" data-target="deepgramApiKey" type="button">نمایش</button></div></label>
+          <label class="field"><span class="field-label">صداهای گوینده‌ها <small>هر خط یک Voice ID</small></span><textarea id="speakerVoices" rows="3" spellcheck="false" placeholder="Voice ID گوینده ۱&#10;Voice ID گوینده ۲"></textarea><small class="field-help">خط اول برای گویندهٔ ۱ و خط دوم برای گویندهٔ ۲ است؛ خط خالی از صدای پیش‌فرض استفاده می‌کند. شمارهٔ گوینده در هر پنجرهٔ ضبط مستقل است و ممکن است در بخش بعد تغییر کند.</small></label>
+        </section>
+        <section class="settings-card card">
+          <div class="section-heading">
+            <div><span class="section-icon fish">F</span><div><strong>Fish Audio</strong><span>ساخت صدای دوبله</span></div></div>
+            <a class="text-link" href="https://fish.audio/app/text-to-speech/" target="_blank" rel="noreferrer">گرفتن Voice ID ↗</a>
+          </div>
+
+          <label class="field">
+            <span class="field-label">API Keyها <small>هر خط یک کلید</small></span>
+            <textarea id="fishApiKeys" rows="3" spellcheck="false" placeholder="Fish API key"></textarea>
+            <small class="field-help">کلید دوم فقط برای failover خطاهای مجوز/اعتبار استفاده می‌شود؛ برای دورزدن rate limit استفاده نمی‌شود.</small>
+          </label>
+
+          <div class="field">
+            <span class="field-label">Voice ID <small>یا لینک کامل Fish</small></span>
+            <div class="voice-input-row">
+              <input id="fishVoiceId" type="text" spellcheck="false" autocomplete="off" placeholder="مثال: 933563... یا لینک ?modelId=...">
+              <button id="testFishBtn" class="btn btn-test" type="button">تست صدا</button>
+            </div>
+            <small id="fishTestState" class="field-help">می‌توانی خود ID یا لینک کامل صفحه Fish Audio را Paste کنی؛ Easy-ts شناسه را استخراج می‌کند.</small>
+          </div>
+
+          <div class="field-grid">
+            <label class="field"><span class="field-label">پردازش همزمان</span><input id="fishConcurrency" type="number" min="1" max="10" step="1"></label>
+            <label class="field"><span class="field-label">Retry هر تکه</span><input id="fishRetries" type="number" min="0" max="8" step="1"></label>
+          </div>
+
+          <label class="field"><span class="field-label">مدل ساخت صدا</span><select id="fishModel"><option value="s2.1-pro-free">S2.1 Pro · پلن توسعه‌دهنده</option><option value="s2.1-pro">S2.1 Pro · پلن پولی</option><option value="s2-pro">S2 Pro</option></select></label>
+          <label class="field"><span class="field-label">کیفیت فایل صوتی</span><select id="ttsBitrate"><option value="64">64 kbps · کم‌حجم</option><option value="128">128 kbps · متعادل</option><option value="192">192 kbps · کیفیت بالاتر</option></select></label>
+          <label class="field"><span class="field-label">Latency</span>
+            <select id="fishLatency">
+              <option value="low">Low — سرعت بیشتر</option>
+              <option value="balanced">Balanced — پیشنهادی</option>
+              <option value="normal">Normal — پایداری بیشتر</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="settings-card card">
+          <div class="section-heading">
+            <div><span class="section-icon groq">G</span><div><strong>ترجمه و تشخیص گفتار</strong><span>Groq · ترجمهٔ متن و پردازش صوت</span></div></div>
+          </div>
+
+          <label class="field">
+            <span class="field-label">Groq API Key</span>
+            <div class="secret-input">
+              <input id="groqApiKey" type="password" spellcheck="false" autocomplete="off" placeholder="gsk_…">
+              <button class="reveal-btn" data-target="groqApiKey" type="button" aria-label="نمایش یا مخفی کردن">نمایش</button>
+            </div>
+          </label>
+
+          <label class="field"><span class="field-label">Whisper Model</span>
+            <select id="whisperModel">
+              <option value="whisper-large-v3-turbo">whisper-large-v3-turbo — سریع‌تر</option>
+              <option value="whisper-large-v3">whisper-large-v3 — دقیق‌تر</option>
+            </select>
+          </label>
+
+          <label class="field"><span class="field-label">لحن ترجمه</span><select id="translationStyle"><option value="natural">طبیعی و محاوره‌ای</option><option value="formal">رسمی و دقیق</option><option value="cinematic">سینمایی و بیانگر، وفادار به متن</option></select></label>
+          <label class="field"><span class="field-label">مدل ترجمه فارسی</span>
+            <select id="groqTranslationModel">
+              <option value="openai/gpt-oss-20b">openai/gpt-oss-20b — سریع</option>
+              <option value="openai/gpt-oss-120b">openai/gpt-oss-120b — قوی‌تر</option>
+              <option value="qwen/qwen3.8-27b">qwen/qwen3.8-27b</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="settings-card card">
+          <div class="section-heading compact">
+            <div><span class="section-icon timeline">T</span><div><strong>Timeline & Speed</strong><span>تعادل سرعت ساخت و هماهنگی</span></div></div>
+          </div>
+
+          <div class="field-grid">
+            <label class="field"><span class="field-label">هدف تکه <small>ثانیه</small></span><input id="chunkTargetSec" type="number" min="3" max="20" step="1"></label>
+            <label class="field"><span class="field-label">حداکثر تکه <small>ثانیه</small></span><input id="chunkMaxSec" type="number" min="5" max="30" step="1"></label>
+          </div>
+          <div class="field-grid">
+            <label class="field"><span class="field-label">حداکثر متن <small>کاراکتر</small></span><input id="chunkMaxChars" type="number" min="80" max="600" step="10"></label>
+            <label class="field"><span class="field-label">Time-stretch</span><input id="maxTimeStretch" type="number" min="1" max="3" step="0.05"></label>
+          </div>
+          <label class="field"><span class="field-label">Fallback capture <small>ثانیه</small></span><input id="fallbackCaptureSec" type="number" min="8" max="30" step="1"></label>
+        </section>
+
+        <section class="settings-card card cache-card">
+          <div class="section-heading compact">
+            <div><span class="section-icon cache">C</span><div><strong>Cache</strong><span id="cacheStats">در حال محاسبه…</span></div></div>
+          </div>
+          <div class="cache-actions">
+            <button id="clearVideoCacheBtn" class="btn btn-danger-soft" type="button">حذف کش همین ویدیو</button>
+            <button id="clearAllCacheBtn" class="btn btn-danger-soft" type="button">حذف کل کش</button>
+          </div>
+        </section>
+
+        <div class="settings-footer">Easy-ts 1.8.0 · کلیدها و کش محلی‌اند؛ متن و صدا برای پردازش به سرویس‌های انتخاب‌شده ارسال می‌شوند.</div>
+      </div>
+    </section>
+  </main>
+  <script src="engine-core.js"></script><script src="popup.js"></script>
+</body>
+</html>

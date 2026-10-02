@@ -1,0 +1,6 @@
+/* Vazir v30.1.0 by Saber Rastikerdar. See fonts/LICENSE-Vazir.txt. */
+@font-face{font-family:Vazir;src:url('fonts/Vazir-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:Vazir;src:url('fonts/Vazir-Medium.woff2') format('woff2');font-style:normal;font-weight:500 600;font-display:swap}
+@font-face{font-family:Vazir;src:url('fonts/Vazir-Bold.woff2') format('woff2');font-style:normal;font-weight:700 900;font-display:swap}
+body,button,input,select,textarea{font-family:Vazir,Tahoma,"Segoe UI",sans-serif}
+.brand small,.sync-note strong{font-family:Vazir,Tahoma,sans-serif}

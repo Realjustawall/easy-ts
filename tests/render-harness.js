@@ -1,0 +1,1 @@
+window.chrome={runtime:{onMessage:{addListener(){}},sendMessage:async()=>({ok:true,settings:{deepgramApiKey:'mock',groqApiKey:'mock',fishApiKeys:['mock'],fishVoiceId:'voice',speakerVoices:['a','b']}})}};

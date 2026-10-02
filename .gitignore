@@ -1,0 +1,10 @@
+.playwright-cli/
+output/
+Saved/
+__pycache__/
+*.pyc
+.env
+.env.*
+*.log
+Easy-ts-*.zip
+!Easy-ts-1.8.0.zip

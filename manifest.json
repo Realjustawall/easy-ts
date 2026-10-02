@@ -1,0 +1,90 @@
+{
+  "manifest_version": 3,
+  "name": "Easy-ts",
+  "version": "1.8.0",
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  },
+  "description": "Persian YouTube dubbing and a full-file studio with speaker diarization, dialogue editing and audio/video export.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "tabCapture",
+    "offscreen",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "https://api.fish.audio/*",
+    "https://api.groq.com/*",
+    "https://api.deepgram.com/*",
+    "https://api.elevenlabs.io/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://api.openai.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*",
+    "https://127.0.0.1/*",
+    "https://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Easy-ts",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*.woff2"
+      ],
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://youtube.com/*"
+      ]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://youtube.com/*"
+      ],
+      "js": [
+        "main-world.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://youtube.com/*"
+      ],
+      "js": [
+        "provider-config.js",
+        "engine-core.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
