@@ -1,0 +1,178 @@
+Easy-ts Privacy Policy
+
+Last updated: October 2, 2026
+
+Easy-ts is a browser extension that provides translation, transcription, subtitle, dubbing, text-to-speech, and live speech translation features.
+
+This Privacy Policy explains what information Easy-ts processes, why it is processed, where it is stored, and when information may be sent to third-party services selected by the user.
+
+1. Information Easy-ts Processes
+
+Depending on the features selected by the user, Easy-ts may process:
+
+- Text entered by the user for translation or speech generation.
+- Subtitles and captions from supported web content.
+- Audio from a browser tab when the user explicitly starts transcription, translation, live translation, or dubbing.
+- Audio or video files that the user explicitly imports into the Easy-ts workspace.
+- Generated speech, translated text, subtitles, project information, and temporary processing data.
+- API keys, provider selections, model selections, voice preferences, and extension settings entered or selected by the user.
+
+Easy-ts does not intentionally collect names, postal addresses, payment card information, health information, or precise location information.
+
+2. Local Storage
+
+Easy-ts stores settings and project-related information locally in the user's browser where possible.
+
+This may include:
+
+- Extension preferences.
+- Selected translation, speech-to-text, and text-to-speech providers.
+- API keys entered by the user.
+- Voice and model settings.
+- Local project metadata.
+- Cached audio and generated speech.
+- Temporary processing results.
+- Translation and dubbing workspace state.
+
+The storage is used so that the user's settings and projects can persist between sessions.
+
+Users should treat API keys as sensitive credentials. Easy-ts does not claim that locally stored API keys are encrypted against other software or users with access to the same browser profile or device.
+
+3. Third-Party Service Providers
+
+Easy-ts can connect to third-party services only as needed to perform features configured or initiated by the user.
+
+Depending on the user's configuration, these services may include providers such as:
+
+- OpenAI
+- Google Gemini
+- Groq
+- Deepgram
+- ElevenLabs
+- Fish Audio
+
+When one of these services is selected, text, audio, or other content required to perform the requested transcription, translation, or speech-generation operation may be transmitted to that provider.
+
+The handling of information by a third-party provider is also governed by that provider's own privacy policy, terms, and data-processing practices.
+
+Easy-ts does not control the independent privacy practices of third-party providers.
+
+4. Local Services
+
+Easy-ts may allow users to configure compatible services running on localhost or 127.0.0.1.
+
+When a local service is selected, relevant processing requests may be sent to the local service configured by the user instead of a remote provider.
+
+5. Browser Tab and Website Access
+
+Easy-ts requests access to supported websites only to provide its translation, subtitle, transcription, audio, and dubbing functionality.
+
+For example, on supported YouTube pages, Easy-ts may access information required to identify the currently selected video, synchronize playback, process captions, or capture audio when the user starts a supported feature.
+
+Easy-ts does not use these permissions to build or sell a general browsing-history profile.
+
+6. Tab Audio Capture
+
+When the user explicitly starts a feature that requires browser-tab audio, Easy-ts may capture audio from the selected tab.
+
+Captured audio is used only for the requested feature, such as:
+
+- Speech recognition.
+- Transcription.
+- Translation.
+- Dubbing.
+- Live speech processing.
+
+Audio may be sent to the speech or translation provider selected by the user when that provider is required to perform the requested operation.
+
+7. Personal Communications
+
+Live translation or speech-processing features may process spoken communications provided by the user.
+
+This information is processed only to provide the translation, transcription, dubbing, or speech-generation functionality requested by the user.
+
+Easy-ts does not use personal communications for advertising, profiling, or unrelated purposes.
+
+8. Website Content
+
+Easy-ts may process website content necessary for its core features, including text, captions, media-related information, audio, video, and subtitles on supported pages.
+
+This processing occurs only as required to provide features initiated by the user.
+
+9. Authentication Information
+
+Easy-ts may store API keys or similar credentials entered by the user for supported service providers.
+
+These credentials are used only to authenticate requests to the provider selected by the user.
+
+Easy-ts does not sell API keys or use them for purposes unrelated to the extension's functionality.
+
+10. Sale and Transfer of User Data
+
+Easy-ts does not sell user data.
+
+Easy-ts does not transfer user data to third parties except when transmission is necessary to provide a feature explicitly requested or configured by the user, such as sending text or audio to a selected transcription, translation, or speech-generation provider.
+
+Easy-ts does not use or transfer user data for purposes unrelated to its single purpose.
+
+Easy-ts does not use or transfer user data to determine creditworthiness or for lending purposes.
+
+11. Advertising and Tracking
+
+Easy-ts does not use user data for personalized advertising.
+
+Easy-ts does not include functionality intended to monitor users across unrelated websites for advertising or behavioral profiling.
+
+12. Remote Code
+
+Easy-ts does not download or execute remote JavaScript or WebAssembly code.
+
+The JavaScript, HTML, CSS, fonts, icons, and other executable extension resources required by Easy-ts are included in the extension package.
+
+Connections to external APIs are used to exchange data required for translation, transcription, or speech-generation services and are not used to download executable code.
+
+13. Data Retention
+
+Locally stored settings, projects, cached media, and generated content may remain in the user's browser profile until they are removed by the user, cleared by the extension, or removed when browser storage is cleared or the extension is uninstalled.
+
+Data sent to third-party providers may be retained according to the policies and settings of those providers.
+
+14. Data Security
+
+Easy-ts attempts to limit data processing to the information necessary to perform requested functionality.
+
+However, no storage or transmission system can be guaranteed to be completely secure.
+
+Users are responsible for protecting their device, browser profile, API credentials, and provider accounts.
+
+15. User Control
+
+Users control when Easy-ts performs translation, transcription, dubbing, live translation, and related media-processing operations.
+
+Users may remove locally stored extension data by using available Easy-ts controls, clearing browser extension storage, or uninstalling the extension.
+
+Users may also revoke or replace API credentials directly through the corresponding third-party provider.
+
+16. Children's Privacy
+
+Easy-ts is not specifically designed to collect personal information from children.
+
+Users should comply with the terms, age requirements, and privacy rules of any third-party service providers they choose to connect to Easy-ts.
+
+17. Changes to This Privacy Policy
+
+This Privacy Policy may be updated when Easy-ts functionality, permissions, providers, or data practices change.
+
+The updated version will be published on this page with a revised "Last updated" date.
+
+18. Contact
+
+Developer: Realjustawall
+
+GitHub:
+https://github.com/Realjustawall/Easy-ts
+
+Privacy Policy:
+https://realjustawall.github.io/Easy-ts/privacy-policy
+
+For privacy questions or issues, please contact the developer through the project's GitHub repository.
